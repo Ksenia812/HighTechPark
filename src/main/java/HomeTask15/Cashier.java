@@ -3,31 +3,26 @@ package com.HomeTask15;
 import java.util.Queue;
 
 public class Cashier extends Thread {
-    volatile private Queue<Customer> customerQueue;
+    private Queue<Customer> customerQueue;
+
 
     public Cashier(String name, Queue<Customer> customerQueue) {
         super(name);
         this.customerQueue = customerQueue;
-        this.setDaemon(true);
-        start();
+
     }
 
-    @Override
-    public void run() {
-        while (true) {
+
+    static void serveCustomer(Cashier cashier, Queue<Customer> customerQueue) {
+        while (!customerQueue.isEmpty()) {
             try {
                 Customer currentCustomer = null;
-                synchronized (customerQueue) {
-                    while (customerQueue.size() == 0) {
-                        customerQueue.wait();
-                    }
-                    currentCustomer = customerQueue.poll();
-                    customerQueue.notifyAll();
-                }
 
-                System.out.println(this + " have started to serve " + currentCustomer);
+
+                currentCustomer = customerQueue.poll();
+                System.out.println(cashier + " have started to serve " + currentCustomer);
                 Thread.sleep(500 * currentCustomer.getSpentTime());
-                System.out.println(currentCustomer.getName() + " was served by " + this);
+                System.out.println(currentCustomer.getName() + " was served by " + cashier);
 
             } catch (InterruptedException e) {
                 System.out.println("The cash is unavailable ");
@@ -38,5 +33,13 @@ public class Cashier extends Thread {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public Queue<Customer> getCustomerQueue() {
+        return customerQueue;
+    }
+
+    public void setCustomerQueue(Queue<Customer> customerQueue) {
+        this.customerQueue = customerQueue;
     }
 }

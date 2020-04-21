@@ -7,7 +7,7 @@ public class Customer {
 
     private String name;
     private int spentTime;
-    private List<Product> productList ;
+    private List<Product> productList;
 
 
     public List<Product> getProductList() {
@@ -35,12 +35,11 @@ public class Customer {
     public static List<Product> getRandomProduct(List<Product> products) {
         List<Product> randomProductList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            int randomIndex = (int)(Math.random() * products.size());
+            int randomIndex = (int) (Math.random() * products.size());
             randomProductList.add(products.get(randomIndex));
         }
         return randomProductList;
     }
-
 
     @Override
     public String toString() {
