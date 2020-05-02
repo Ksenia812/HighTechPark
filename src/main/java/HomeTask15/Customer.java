@@ -7,11 +7,7 @@ public class Customer {
 
     private String name;
     private int spentTime;
-<<<<<<< HEAD
-    private List<Product> productList ;
-=======
     private List<Product> productList;
->>>>>>> feature-lesson15
 
 
     public List<Product> getProductList() {
@@ -39,20 +35,12 @@ public class Customer {
     public static List<Product> getRandomProduct(List<Product> products) {
         List<Product> randomProductList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-<<<<<<< HEAD
-            int randomIndex = (int)(Math.random() * products.size());
-=======
             int randomIndex = (int) (Math.random() * products.size());
->>>>>>> feature-lesson15
             randomProductList.add(products.get(randomIndex));
         }
         return randomProductList;
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> feature-lesson15
     @Override
     public String toString() {
         StringBuffer products = new StringBuffer(", who bought products (");
